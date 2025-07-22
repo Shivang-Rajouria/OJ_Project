@@ -1,18 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-import Login from './pages/Login'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Signup from './pages/Signup'
-import Contests from './pages/Contests'
+import Login from './pages/Login'
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/contests" element={<Contests />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   )
 }
 
