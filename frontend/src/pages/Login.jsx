@@ -16,7 +16,7 @@ export default function Login() {
       const res = await login(formData)
       localStorage.setItem('token', res.data.token)
       alert('Login successful!')
-      navigate('/contests')
+      navigate('/Home')
     } catch (err) {
       alert(err.response?.data?.msg || 'Login failed')
     }

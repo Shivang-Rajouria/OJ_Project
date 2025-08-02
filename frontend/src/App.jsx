@@ -1,21 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Signup from './pages/Signup'
 import Login from './pages/Login'
-import Signup from './pages/Signup' // Optional
-// import Contests from './pages/Contests' // You can create later
+import Home from './pages/Home'
+import CodeEditor from './pages/CodeEditor'
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} /> {/* Optional */}
-        <Route path="/contests" element={<div>Contests Page</div>} /> {/* Placeholder */}
-        <Route path="*" element={<div>404 Not Found</div>} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/problem/:id" element={<CodeEditor />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   )
 }
-
-export default App

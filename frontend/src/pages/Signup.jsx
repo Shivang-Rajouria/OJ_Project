@@ -14,7 +14,7 @@ export default function Signup() {
     e.preventDefault()
     try {
       await signup(formData)
-      alert('Signup successful!')
+      alert('Signup successful! Please login.')
       navigate('/login')
     } catch (err) {
       alert(err.response?.data?.msg || 'Signup failed')
@@ -23,17 +23,18 @@ export default function Signup() {
 
   return (
     <div className="auth-container">
-      <h1>Signup for BranchBench</h1>
+      <h1>Sign Up - BranchBench</h1>
 
       <form className="auth-form" onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" onChange={handleChange} required />
+        <input name="name" placeholder="Full Name" onChange={handleChange} required />
         <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
         <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
         <button type="submit">Sign Up</button>
       </form>
 
       <div className="auth-footer">
-        Already have an account? <button onClick={() => navigate('/login')}>Login</button>
+        Already have an account?{' '}
+        <button onClick={() => navigate('/login')}>Login here</button>
       </div>
     </div>
   )
