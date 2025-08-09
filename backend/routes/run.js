@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { runCode } = require("../controllers/runController");
+const { runSubmission } = require('../controllers/runController');
 
-router.post("/", runCode);
+router.post('/', runSubmission);
 
 module.exports = router;

@@ -1,9 +1,4 @@
-import axios from 'axios'
+﻿import { backendAxios } from "./axios";
 
-const API = import.meta.env.VITE_API_BASE_URL
-
-export const signup = (userData) =>
-  axios.post(`${API}/api/auth/signup`, userData)
-
-export const login = (userData) =>
-  axios.post(`${API}/api/auth/login`, userData)
+export const signup = (data) => backendAxios.post("/api/auth/signup", data);
+export const login = (data) => backendAxios.post("/api/auth/login", data);

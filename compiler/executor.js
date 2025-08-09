@@ -70,12 +70,15 @@ const executeCode = (language, code, input) => {
 
         // 5. Run the container based on language
         let runCommand;
-        
-        if (language === 'cpp') {
-          // For C++, run directly without volume mounting to preserve compiled executable
+
+        if (language === "cpp") {
           runCommand = `docker run --rm ${imageTag}`;
-        } else {
-          // For other languages, use volume mounting
+        } 
+        else if (language === "java") {
+          // Run Java from /app with classpath
+          runCommand = `docker run --rm ${imageTag} java -cp /app Main`;
+        } 
+        else {
           runCommand = `docker run --rm -v "${jobPath}:/app" ${imageTag}`;
         }
 

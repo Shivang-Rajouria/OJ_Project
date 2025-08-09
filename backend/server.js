@@ -1,40 +1,24 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+const connectDB = require('./db');
 
-const authRoutes = require("./routes/auth");
-const runRoutes = require("./routes/run");
+const problemsRoutes = require('./routes/problems');
+const runRoutes = require('./routes/run');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+connectDB();
+
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/run", runRoutes);
+// API routes
+app.use('/api/problems', problemsRoutes);
+app.use('/api/run', runRoutes);
+app.use('/api/auth', authRoutes);
+app.get('/', (req, res) => res.send('BranchBench Backend running'));
 
-// Health check route
-app.get("/", (req, res) => {
-  res.send("BranchBench Backend is running 🟢");
-});
-
-// Unknown routes handler
-app.use((req, res) => {
-  res.status(404).json({ message: "Route not found ❌" });
-});
-
-// Connect to MongoDB and start server
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("🛢️ MongoDB connected");
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err.message);
-    process.exit(1);
-  });
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
