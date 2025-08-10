@@ -25,12 +25,17 @@ export default function Home() {
         </div>
       </div>
 
-      {loading ? <div className="card">Loadingâ€¦</div> : (
-        <div className="grid">
+      {loading ? (
+        <div className="card">Loading…</div>
+      ) : (
+        <div className="problem-list">
           {problems.map(p => (
             <div key={p._id} className="problem-card card" onClick={() => nav(`/problems/${p._id}`)}>
               <h3 style={{ margin: 0 }}>{p.title}</h3>
-              <p style={{ color: "#6b7280", marginTop: 8 }}>{(p.description || "").slice(0, 120)}{(p.description || "").length > 120 ? "..." : ""}</p>
+              <p style={{ color: "#6b7280", marginTop: 8 }}>
+                {(p.description || "").slice(0, 120)}
+                {(p.description || "").length > 120 ? "..." : ""}
+              </p>
               <div style={{ marginTop: 12, color: "#9ca3af", fontSize: 13 }}>{p.testCases?.length || 0} test(s)</div>
             </div>
           ))}
