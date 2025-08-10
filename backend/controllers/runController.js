@@ -1,7 +1,7 @@
 const axios = require('axios');
 const Problem = require('../models/Problem');
 
-const COMPILER_URL = process.env.COMPILER_URL || 'http://localhost:8000/run';
+const COMPILER_URL = process.env.COMPILER_URL || 'http://3.27.119.93:8000/run';
 
 // helper: normalize output (trim trailing newlines/spaces)
 function normalize(s) {
